@@ -18,7 +18,7 @@ class ResumoView(context: Context,
     private val corReceita = ContextCompat.getColor(context, R.color.receita)
     private val corDespesa = ContextCompat.getColor(context, R.color.despesa)
 
-    fun atualiza(){
+    fun atualiza() {
         adicionaReceita()
         adicionaDespesa()
         adicionaTotal()
@@ -26,26 +26,32 @@ class ResumoView(context: Context,
 
     private fun adicionaReceita() {
         val totalReceita = resumo.receita
-        with(view!!.resumo_card_receita) {
-            setTextColor(corReceita)
-            text = totalReceita.formataParaBrasileiro()
+        view?.let {
+            with(it.resumo_card_receita) {
+                setTextColor(corReceita)
+                text = totalReceita.formataParaBrasileiro()
+            }
         }
     }
 
     private fun adicionaDespesa() {
         val totalDespesa = resumo.despesa
-        with(view!!.resumo_card_despesa) {
-            setTextColor(corDespesa)
-            text = totalDespesa.formataParaBrasileiro()
+        view?.let {
+            with(view.resumo_card_despesa) {
+                setTextColor(corDespesa)
+                text = totalDespesa.formataParaBrasileiro()
+            }
         }
     }
 
     private fun adicionaTotal() {
         val total = resumo.total
         val cor = corPor(total)
-        with(view!!.resumo_card_total){
-            setTextColor(cor)
-            text = total.formataParaBrasileiro()
+        view?.let {
+            with(view.resumo_card_total) {
+                setTextColor(cor)
+                text = total.formataParaBrasileiro()
+            }
         }
     }
 
