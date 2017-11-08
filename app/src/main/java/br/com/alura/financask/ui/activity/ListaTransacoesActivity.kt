@@ -19,18 +19,15 @@ class ListaTransacoesActivity : AppCompatActivity() {
 
     private val transacoes: MutableList<Transacao> = mutableListOf()
     private val viewDaActivity by lazy {
-        Log.i("teste lazy 0", "inicialização do lazy")
         window.decorView
+    }
+    private val viewGroupDaActivity by lazy {
+        viewDaActivity as ViewGroup
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lista_transacoes)
-
-        Log.i("teste lazy 1", viewDaActivity.toString())
-        Log.i("teste lazy 2", viewDaActivity.toString())
-        Log.i("teste lazy 3", viewDaActivity.toString())
-
 
         configuraResumo()
         configuraLista()
@@ -49,7 +46,7 @@ class ListaTransacoesActivity : AppCompatActivity() {
     }
 
     private fun chamaDialogDeAdicao(tipo: Tipo) {
-        AdicionaTransacaoDialog(viewDaActivity as ViewGroup, this)
+        AdicionaTransacaoDialog(viewGroupDaActivity, this)
                 .chama(tipo, object : TransacaoDelegate {
                     override fun delegate(transacao: Transacao) {
                         adiciona(transacao)
@@ -85,7 +82,7 @@ class ListaTransacoesActivity : AppCompatActivity() {
     }
 
     private fun chamaDialogDeAlteracao(transacao: Transacao, posicao: Int) {
-        AlteraTransacaoDialog(viewDaActivity as ViewGroup, this)
+        AlteraTransacaoDialog(viewGroupDaActivity, this)
                 .chama(transacao, object : TransacaoDelegate {
                     override fun delegate(transacao: Transacao) {
                         altera(transacao, posicao)
