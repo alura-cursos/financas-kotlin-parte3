@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.resumo_card.view.*
 import java.math.BigDecimal
 
 class ResumoView(context: Context,
-                 private val view: View?,
+                 private val view: View,
                  transacoes: List<Transacao>) {
 
     private val resumo: Resumo = Resumo(transacoes)
@@ -26,32 +26,26 @@ class ResumoView(context: Context,
 
     private fun adicionaReceita() {
         val totalReceita = resumo.receita
-        view?.let {
-            with(it.resumo_card_receita) {
-                setTextColor(corReceita)
-                text = totalReceita.formataParaBrasileiro()
-            }
+        with(view.resumo_card_receita) {
+            setTextColor(corReceita)
+            text = totalReceita.formataParaBrasileiro()
         }
     }
 
     private fun adicionaDespesa() {
         val totalDespesa = resumo.despesa
-        view?.let {
-            with(view.resumo_card_despesa) {
-                setTextColor(corDespesa)
-                text = totalDespesa.formataParaBrasileiro()
-            }
+        with(view.resumo_card_despesa) {
+            setTextColor(corDespesa)
+            text = totalDespesa.formataParaBrasileiro()
         }
     }
 
     private fun adicionaTotal() {
         val total = resumo.total
         val cor = corPor(total)
-        view?.let {
-            with(view.resumo_card_total) {
-                setTextColor(cor)
-                text = total.formataParaBrasileiro()
-            }
+        with(view.resumo_card_total) {
+            setTextColor(cor)
+            text = total.formataParaBrasileiro()
         }
     }
 
