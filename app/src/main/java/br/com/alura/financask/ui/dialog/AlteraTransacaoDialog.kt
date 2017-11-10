@@ -3,7 +3,6 @@ package br.com.alura.financask.ui.dialog
 import android.content.Context
 import android.view.ViewGroup
 import br.com.alura.financask.R
-import br.com.alura.financask.delegate.TransacaoDelegate
 import br.com.alura.financask.extension.formataParaBrasileiro
 import br.com.alura.financask.model.Tipo
 import br.com.alura.financask.model.Transacao
@@ -22,9 +21,9 @@ class AlteraTransacaoDialog(
         return R.string.altera_despesa
     }
 
-    fun chama(transacao: Transacao, transacaoDelegate: TransacaoDelegate) {
+    fun chama(transacao: Transacao, delegate: (transacao: Transacao) -> Unit) {
         val tipo = transacao.tipo
-        super.chama(tipo, transacaoDelegate)
+        super.chama(tipo, delegate)
         inicializaCampos(transacao)
     }
 
