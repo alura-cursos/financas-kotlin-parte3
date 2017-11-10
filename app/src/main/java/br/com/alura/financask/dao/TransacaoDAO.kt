@@ -4,17 +4,20 @@ import br.com.alura.financask.model.Transacao
 
 class TransacaoDAO {
 
-    val transacoes: MutableList<Transacao> = mutableListOf()
+    val transacoes: List<Transacao> = Companion.transacoes
+    companion object {
+        private val transacoes: MutableList<Transacao> = mutableListOf()
+    }
 
     fun adiciona(transacao: Transacao){
-        transacoes.add(transacao)
+        Companion.transacoes.add(transacao)
     }
 
     fun altera(transacao: Transacao, posicao: Int){
-        transacoes[posicao] = transacao
+        Companion.transacoes[posicao] = transacao
     }
 
     fun remove(posicao: Int){
-        transacoes.removeAt(posicao)
+        Companion.transacoes.removeAt(posicao)
     }
 }
